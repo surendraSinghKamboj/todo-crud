@@ -1,69 +1,153 @@
-*{
-    margin: 0;
-    padding: 0;
+* {
+  margin: 0;
+  padding: 0;
 }
-.inputTitle{
-    width: 100%;
-    height: 50px;
-    background-color: #08D1E9;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0px 10px 10px rgba(0,0,0,.5);
+body {
+  overflow-x: hidden;
 }
-#title{
-    width: 80%;
-    height: 30px;
-    font-size: 24px;
-    padding-left: 10px;
-    border-radius: 5px;
+.inputTitle {
+  width: 100%;
+  height: 50px;
+  background-color: #08d1e9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.5);
 }
-.detailsBox{
-    width: 100%;
-    height: 70%;
-    margin-top: 20px;
-    display: flex;
-    overflow: hidden;
-    font-style: italic;
-    justify-content: center;
-    align-items: center;
+#title {
+  width: 80%;
+  height: 30px;
+  font-size: 24px;
+  padding-left: 10px;
+  border-radius: 5px;
 }
-#details{
-    width: 95%;
-    height: 50%;
-    font-size: 20px;
-    box-shadow: 0px 0px 10px rgba(0,0,0,.5);
+.detailsBox {
+  width: 100%;
+  height: 60px;
+  margin-top: 20px;
+  display: flex;
+  overflow: hidden;
+  font-style: italic;
+  justify-content: center;
+  align-items: center;
 }
-textarea{
-    padding: 10px;
-    resize: none;
+#details {
+  width: 95%;
+  height: 50%;
+  font-size: 20px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
 }
-textarea:active{
-    border: none;
-    border-color: #fff;
+textarea {
+  padding: 10px;
+  resize: none;
 }
-.buttonBox{
-    width: 100%;
-    min-height: 50px;
-    margin-top: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+textarea:active {
+  border: none;
+  border-color: #fff;
 }
-button{
-    width: 150px;
-    height: 40px;
-    font-size: 24px;
-    border-radius: 5px;
-    transition: all .4s;
-    box-shadow: 0px 6px 0px rgba(0,0,0,.5);
+.buttonBox {
+  width: 100%;
+  min-height: 50px;
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-button:hover{
-    background-color: green;
-    color: white;
-    border: none;
+button {
+  width: 150px;
+  height: 40px;
+  font-size: 24px;
+  border-radius: 5px;
+  transition: all 0.4s;
+  box-shadow: 0px 6px 0px rgba(0, 0, 0, 0.5);
 }
-button:active{
-    box-shadow: none;
-    transform: translateY(6px);
+button:hover {
+  background-color: green;
+  color: white;
+  border: none;
+}
+button:active {
+  box-shadow: none;
+  transform: translateY(6px);
+}
+
+/* Card Area and Card Styles */
+
+.cardArea {
+  width: 100vw;
+  display: flex;
+  flex-wrap: wrap;
+  padding-top: 5px;
+  justify-content: center;
+}
+.Card {
+  width: 46vw;
+  margin: 1vw;
+}
+.title {
+  background-color: #08d1e9;
+  text-align: center;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  color: #fff;
+  font-size: 24px;
+  border-bottom: 2px solid #fff;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+.detail {
+  width: 100%;
+  text-align: center;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  background-image: linear-gradient(to left, skyblue, pink, skyblue);
+  font-size: 22px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: blueviolet;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+/* list buttons button Styles */
+.delete {
+  width: 30px;
+  height: 30px;
+  box-shadow: inset 0px 0px 2px 2px rgba(0, 0, 0, 0.5);
+  background-color: #fff;
+  position: relative;
+  left: 46vw;
+  top: 30px;
+  color: red;
+  border-radius: 50%;
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+.delete:hover {
+  background-color: red;
+  color: #fff;
+  transform: rotateZ(180deg);
+}
+
+/* Scroll Bar Css Code  */
+/* ===== Scrollbar CSS ===== */
+/* Firefox */
+* {
+  scrollbar-width: auto;
+  scrollbar-color: #00b4f0 #ffffff;
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 5px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #ffffff;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #00b4f0;
+  border-radius: 10px;
+  border: 0px groove #ffffff;
 }

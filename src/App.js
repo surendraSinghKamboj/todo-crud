@@ -6,8 +6,8 @@ function App() {
   return (
     <BrowserRouter>
     <Routes>
-      <Route path='/' element={<List />} />
-      <Route path="/Input" element={<Input />} />
+      <Route path='/List' element={<List />} />
+      <Route path="/" element={<Input />} />
       </Routes>
     </BrowserRouter>
   );
