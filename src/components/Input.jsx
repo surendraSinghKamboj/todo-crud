@@ -47,8 +47,6 @@ const Input = () => {
     console.log();
   }, [stroeArray]);
 
-  // console.log(storeArray);
-
   const handleComplete = (key) => {
     let deepcopy = stroeArray[key];
     if (deepcopy.stat === "pendingCard") {
@@ -64,8 +62,6 @@ const Input = () => {
     });
     setStoreArray(freshArray);
   };
-
-  // console.log(stroeArray);
   return (
     <>
       <div className="inputTitle">
