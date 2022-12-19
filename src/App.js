@@ -1,6 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Input from "./components/Input";
-import List from "./components/List";
 
 function App() {
   return (
