@@ -3,15 +3,19 @@ import React from "react";
 import Card from "./Card";
 
 const Input = () => {
-  const [data, setData] = useState({
+  const stable = {
     title: "",
     details: "",
-  });
+    stat: "pendingCard",
+  };
+  const [data, setData] = useState(stable);
   const { title, details } = data;
   const [stroeArray, setStoreArray] = useState(
     JSON.parse(localStorage.getItem("todos"))
   );
-
+  if (!stroeArray) {
+    setStoreArray([]);
+  }
   const handleChange = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
   };
@@ -19,10 +23,7 @@ const Input = () => {
   const saveHandler = () => {
     if (title && details) {
       setStoreArray([...stroeArray, data]);
-      setData({
-        title: "",
-        details: "",
-      });
+      setData(stable);
     }
   };
 
@@ -46,6 +47,25 @@ const Input = () => {
     console.log();
   }, [stroeArray]);
 
+  // console.log(storeArray);
+
+  const handleComplete = (key) => {
+    let deepcopy = stroeArray[key];
+    if (deepcopy.stat === "pendingCard") {
+      deepcopy.stat = "completeCard";
+    } else {
+      deepcopy.stat = "pendingCard";
+    }
+    let freshArray = stroeArray.map((obj, index) => {
+      if (index === key) {
+        return deepcopy;
+      }
+      return obj;
+    });
+    setStoreArray(freshArray);
+  };
+
+  // console.log(stroeArray);
   return (
     <>
       <div className="inputTitle">
@@ -80,10 +100,20 @@ const Input = () => {
           stroeArray.map((item, index) => {
             return (
               <div key={index}>
+                <button
+                  className="complete"
+                  onClick={() => handleComplete(index)}
+                >
+                  {item.stat[0].toUpperCase()}
+                </button>
                 <button className="delete" onClick={() => handleDelete(index)}>
                   X
                 </button>
-                <Card title={item.title} detail={item.details}></Card>
+                <Card
+                  title={item.title}
+                  detail={item.details}
+                  styles={item.stat}
+                ></Card>
               </div>
             );
           })}

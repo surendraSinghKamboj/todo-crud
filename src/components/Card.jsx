@@ -1,10 +1,10 @@
 import React from "react";
 
 const Card = (props) => {
+
   return (
     <>
-      {/* {console.log(props)} */}
-      <div className="Card">
+      <div className={props.styles}>
         <div className="title">{props.title}</div>
         <div className="detail">{props.detail}</div>
       </div>
