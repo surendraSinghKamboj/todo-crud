@@ -172,3 +172,22 @@ button:active {
   border: 0px groove #ffffff;
 }
 
+/* Media queruy for Responsiveness */
+
+@media (max-width: 700px) {
+  .pendingCard {
+    width: 90vw;
+    margin: 1vw;
+   
+  }
+  .completeCard {
+    width: 90vw;
+    margin: 1vw;
+  }
+  .delete{
+    left:calc(85vw - 30px);
+  }
+  .complete{
+    left: calc(85vw - 35px);
+  }
+}

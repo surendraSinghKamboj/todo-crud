@@ -1,8 +1,17 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import React from "react";
 import Card from "./Card";
+import { useSelector, useDispatch } from "react-redux";
+
+import { addData, removeData, removeAllData, staus } from "../Features/counter";
 
 const Input = () => {
+  // Redux code starts from here
+  const reduxData = useSelector((state) => state.todo);
+  const dispatch = useDispatch();
+
+  // useState React hook
+  // ************************************************************************
   const stable = {
     title: "",
     details: "",
@@ -10,58 +19,26 @@ const Input = () => {
   };
   const [data, setData] = useState(stable);
   const { title, details } = data;
-  const [stroeArray, setStoreArray] = useState(
-    JSON.parse(localStorage.getItem("todos"))
-  );
-  if (!stroeArray) {
-    setStoreArray([]);
-  }
+
   const handleChange = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
   };
+  // ***************************************************************************
 
+  //--------------------------------------------------------------------------
   const saveHandler = () => {
     if (title && details) {
-      setStoreArray([...stroeArray, data]);
+      dispatch(addData(data));
       setData(stable);
     }
   };
+  //--------------------------------------------------------------------------
+  useEffect(
+    () => localStorage.setItem("todos", JSON.stringify(reduxData)),
+    [reduxData]
+  );
 
-  const handleDelete = (key) => {
-    setStoreArray(
-      stroeArray.filter((element, id) => {
-        return key !== id;
-      })
-    );
-  };
-
-  const handleAllDelete = () => {
-    setStoreArray([]);
-  };
-
-  React.useEffect(() => {
-    localStorage.setItem("todos", JSON.stringify(stroeArray));
-  }, [stroeArray]);
-
-  React.useEffect(() => {
-    console.log();
-  }, [stroeArray]);
-
-  const handleComplete = (key) => {
-    let deepcopy = stroeArray[key];
-    if (deepcopy.stat === "pendingCard") {
-      deepcopy.stat = "completeCard";
-    } else {
-      deepcopy.stat = "pendingCard";
-    }
-    let freshArray = stroeArray.map((obj, index) => {
-      if (index === key) {
-        return deepcopy;
-      }
-      return obj;
-    });
-    setStoreArray(freshArray);
-  };
+  
   return (
     <>
       <div className="inputTitle">
@@ -86,23 +63,39 @@ const Input = () => {
         ></textarea>
       </div>
       <div className="buttonBox">
-        <button id="save" onClick={saveHandler}>
+        <button
+          id="save"
+          onClick={() => {
+            saveHandler();
+          }}
+        >
           Save
         </button>
-        <button onClick={handleAllDelete}>Delete All</button>
+        <button
+          onClick={() => {
+            dispatch(removeAllData([]));
+          }}
+        >
+          Delete All
+        </button>
       </div>
       <div className="cardArea">
-        {stroeArray &&
-          stroeArray.map((item, index) => {
+        {reduxData &&
+          reduxData.map((item, index) => {
             return (
               <div key={index}>
                 <button
                   className="complete"
-                  onClick={() => handleComplete(index)}
+                  onClick={() => dispatch(staus(index))}
                 >
                   {item.stat[0].toUpperCase()}
                 </button>
-                <button className="delete" onClick={() => handleDelete(index)}>
+                <button
+                  className="delete"
+                  onClick={() => {
+                    dispatch(removeData(index));
+                  }}
+                >
                   X
                 </button>
                 <Card
